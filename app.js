@@ -1,9 +1,13 @@
-const express = require("express")
 require("dotenv").config()
-const app = express()
-const productRoutes = require("./routes/productRoutes")
+const express = require("express")
+const cors = require("cors") // Import the cors package
 
+const app = express()
+
+app.use(cors()) // Use cors middleware to enable CORS for all routes
 app.use(express.json())
+
+const productRoutes = require("./routes/productRoutes")
 app.use("/api/products", productRoutes)
 
 app.get("/", (req, res) => {
